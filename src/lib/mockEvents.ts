@@ -3,6 +3,7 @@ import type { Event } from './types'
 export const mockEvents: Event[] = [
   {
     id: '1',
+    slug: 'boise-farmers-market-spring-kickoff',
     title: 'Boise Farmers Market Spring Kickoff',
     description:
       'The beloved Boise Farmers Market returns for spring! Local produce, artisan goods, live music, and kid-friendly activities throughout the market.',
@@ -23,6 +24,7 @@ export const mockEvents: Event[] = [
   },
   {
     id: '2',
+    slug: 'junior-naturalists-spring-birds',
     title: 'Junior Naturalists: Spring Birds',
     description:
       'Join a guided walk to spot and identify early spring migratory birds along the Boise River greenbelt. Binoculars provided.',
@@ -43,6 +45,7 @@ export const mockEvents: Event[] = [
   },
   {
     id: '3',
+    slug: 'kids-pottery-drop-in-morning',
     title: 'Kids Pottery Drop-In Morning',
     description:
       'Drop in for a hands-on pottery session. Kids will work with real clay and take home their creation after it fires.',
@@ -63,6 +66,7 @@ export const mockEvents: Event[] = [
   },
   {
     id: '4',
+    slug: 'the-very-hungry-caterpillar-live',
     title: 'The Very Hungry Caterpillar — Live!',
     description:
       'A beloved picture book comes to life in this colorful 45-minute theatrical production. Perfect for little ones.',
@@ -83,6 +87,7 @@ export const mockEvents: Event[] = [
   },
   {
     id: '5',
+    slug: 'open-swim-family-play-hour',
     title: 'Open Swim & Family Play Hour',
     description:
       'Join us every Saturday morning for open family swim at the Boise YMCA. Lane and leisure pool open.',
