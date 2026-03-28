@@ -108,6 +108,7 @@ export const mockEvents: Event[] = [
   },
   {
     id: '6',
+    slug: 'story-time-craft-earth-day',
     title: 'Story Time + Craft: Earth Day Edition',
     description:
       'Join us for stories about nature and the environment, followed by a recycled-material craft project kids can take home.',
@@ -128,6 +129,7 @@ export const mockEvents: Event[] = [
   },
   {
     id: '7',
+    slug: 'intro-to-coding-for-kids',
     title: 'Intro to Coding for Kids (Ages 7–11)',
     description:
       'A beginner-friendly two-hour workshop where kids learn basic programming concepts through games and hands-on projects.',
