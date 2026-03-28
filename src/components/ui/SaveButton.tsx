@@ -1,18 +1,30 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
+import { useIsEventSaved, useSaveEvent, useUnsaveEvent } from '../../hooks/useSavedEvents'
 
 interface SaveButtonProps {
+  eventId: string
   variant?: 'dark' | 'light'
-  onToggle?: (saved: boolean) => void
 }
 
-export function SaveButton({ variant = 'dark', onToggle }: SaveButtonProps) {
-  const [saved, setSaved] = useState(false)
+export function SaveButton({ eventId, variant = 'dark' }: SaveButtonProps) {
+  const navigate = useNavigate()
+  const { user } = useAuth()
+  const saved = useIsEventSaved(user?.id ?? null, eventId)
+  const { mutate: save } = useSaveEvent()
+  const { mutate: unsave } = useUnsaveEvent()
 
   function handleClick(e: React.MouseEvent) {
     e.stopPropagation()
-    const next = !saved
-    setSaved(next)
-    onToggle?.(next)
+    if (!user) {
+      navigate('/profile')
+      return
+    }
+    if (saved) {
+      unsave({ userId: user.id, eventId })
+    } else {
+      save({ userId: user.id, eventId })
+    }
   }
 
   if (variant === 'dark') {

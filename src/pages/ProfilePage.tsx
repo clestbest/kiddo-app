@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { supabase } from '../lib/supabase'
 
 type Mode = 'idle' | 'login' | 'signup' | 'forgot'
 
 export default function ProfilePage() {
+  const navigate = useNavigate()
   const { user, loading } = useAuth()
   const [mode, setMode] = useState<Mode>('idle')
   const [email, setEmail] = useState('')
@@ -37,8 +39,8 @@ export default function ProfilePage() {
     if (error) {
       setError(error.message)
     } else {
-      setMessage('Check your email to confirm your account.')
       reset()
+      setMessage('Check your email to confirm your account.')
       setMode('idle')
     }
     setSubmitting(false)
@@ -89,7 +91,10 @@ export default function ProfilePage() {
           <button className="w-full flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-primary-light transition-colors">
             <span className="text-base">📍</span> Location settings
           </button>
-          <button className="w-full flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-primary-light transition-colors">
+          <button
+            onClick={() => navigate('/submit')}
+            className="w-full flex items-center gap-3 px-4 py-3 text-sm text-ink hover:bg-primary-light transition-colors"
+          >
             <span className="text-base">📅</span> Submit an event
           </button>
         </div>

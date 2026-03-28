@@ -1,15 +1,23 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { mockEvents } from '../lib/mockEvents'
+import { useEvent } from '../hooks/useEvents'
 import { categoryStyles, formatEventDate, formatPrice, formatAgeRange } from '../lib/eventUtils'
 import { SaveButton } from '../components/ui/SaveButton'
 import { Tag } from '../components/ui/Tag'
 
 export default function EventDetailPage() {
-  const { id } = useParams<{ id: string }>()
+  const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
-  const event = mockEvents.find((e) => e.id === id)
+  const { data: event, isLoading, isError } = useEvent(slug!)
 
-  if (!event) {
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+      </div>
+    )
+  }
+
+  if (isError || !event) {
     return (
       <div className="flex flex-col items-center justify-center h-[60vh] gap-4 px-6">
         <div className="text-6xl">😕</div>
@@ -50,7 +58,7 @@ export default function EventDetailPage() {
               {event.title}
             </h1>
           </div>
-          <SaveButton variant="light" />
+          <SaveButton eventId={event.id} variant="light" />
         </div>
 
         <p className="text-muted text-sm leading-relaxed mb-6">{event.description}</p>

@@ -3,6 +3,7 @@ import { categoryStyles, formatEventDate } from '../../lib/eventUtils'
 import { Tag } from '../ui/Tag'
 import { PriceTag } from '../ui/PriceTag'
 import { AgeBadge } from '../ui/AgeBadge'
+import { SaveButton } from '../ui/SaveButton'
 
 interface EventCardProps {
   event: Event
@@ -59,7 +60,10 @@ export function EventCard({ event, style, onClick }: EventCardProps) {
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 border-t border-border">
           <PriceTag priceCents={event.price_cents} />
-          <AgeBadge min={event.age_min} max={event.age_max} />
+          <div className="flex items-center gap-2">
+            <AgeBadge min={event.age_min} max={event.age_max} />
+            <SaveButton eventId={event.id} variant="light" />
+          </div>
         </div>
       </div>
     </div>

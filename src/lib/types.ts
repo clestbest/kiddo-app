@@ -10,6 +10,7 @@ export type EventCategory =
 
 export type Event = {
   id: string
+  slug: string
   title: string
   description: string
   location_name: string

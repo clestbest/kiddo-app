@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 type Filter = {
   id: string
   label: string
@@ -19,15 +17,13 @@ const FILTERS: Filter[] = [
 ]
 
 interface FilterChipsProps {
-  onFilterChange?: (filterId: string) => void
+  active: string
+  onChange: (filterId: string) => void
 }
 
-export function FilterChips({ onFilterChange }: FilterChipsProps) {
-  const [active, setActive] = useState('this-weekend')
-
+export function FilterChips({ active, onChange }: FilterChipsProps) {
   function handleClick(id: string) {
-    setActive(id)
-    onFilterChange?.(id)
+    onChange(id === active ? '' : id)
   }
 
   return (

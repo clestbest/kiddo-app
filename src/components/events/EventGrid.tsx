@@ -1,12 +1,14 @@
+import { useNavigate } from 'react-router-dom'
 import type { Event } from '../../lib/types'
 import { EventCard } from './EventCard'
 
 interface EventGridProps {
   events: Event[]
-  onEventClick?: (event: Event) => void
 }
 
-export function EventGrid({ events, onEventClick }: EventGridProps) {
+export function EventGrid({ events }: EventGridProps) {
+  const navigate = useNavigate()
+
   return (
     <div className="grid gap-4 mb-10"
       style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
@@ -16,7 +18,7 @@ export function EventGrid({ events, onEventClick }: EventGridProps) {
           key={event.id}
           event={event}
           style={{ animationDelay: `${(i + 1) * 0.05}s` }}
-          onClick={() => onEventClick?.(event)}
+          onClick={() => navigate(`/events/${event.slug}`)}
         />
       ))}
     </div>
