@@ -68,7 +68,7 @@ export default function SubmitEventPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!form.category) return
+    if (!form.category || !user) return
     setSubmitting(true)
     setError(null)
 
