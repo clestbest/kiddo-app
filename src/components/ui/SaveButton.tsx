@@ -42,7 +42,7 @@ export function SaveButton({ eventId, variant = 'dark' }: SaveButtonProps) {
   return (
     <button
       onClick={handleClick}
-      className="w-8 h-8 rounded-full bg-cream border border-border flex items-center justify-center text-sm transition-all hover:border-primary cursor-pointer"
+      className="w-8 h-8 shrink-0 rounded-full bg-cream border border-border flex items-center justify-center text-sm transition-all hover:border-primary cursor-pointer"
       aria-label={saved ? 'Unsave event' : 'Save event'}
     >
       {saved ? '❤️' : '🤍'}

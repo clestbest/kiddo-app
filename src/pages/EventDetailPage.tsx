@@ -80,7 +80,7 @@ export default function EventDetailPage() {
         </div>
 
         <div className="flex items-center justify-between pt-4 border-t border-border">
-          <div className="font-fraunces text-3xl font-black" style={{ color: event.price_cents === 0 ? 'var(--color-sage)' : 'var(--color-ink)' }}>
+          <div className="font-fraunces text-3xl font-black text-ink">
             {event.price_cents === 0 ? 'Free' : formatPrice(event.price_cents)}
           </div>
           {organizer?.website ? (
