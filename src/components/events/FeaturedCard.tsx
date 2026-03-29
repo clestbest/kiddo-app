@@ -24,9 +24,6 @@ export function FeaturedCard({ event, onClick }: FeaturedCardProps) {
 
       {/* Left content */}
       <div className="relative z-10">
-        <div className="inline-flex items-center gap-[5px] bg-primary text-white text-[11px] font-bold tracking-[1px] uppercase px-[10px] py-1 rounded-chip mb-3">
-          ⭐ Staff pick
-        </div>
         <h2 className="font-fraunces text-[26px] font-bold text-ink tracking-[-0.5px] mb-[10px] leading-[1.2]">
           {event.title}
         </h2>

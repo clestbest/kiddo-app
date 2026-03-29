@@ -35,7 +35,11 @@ export default function ProfilePage() {
     e.preventDefault()
     setSubmitting(true)
     setError(null)
-    const { error } = await supabase.auth.signUp({ email, password })
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: window.location.origin },
+    })
     if (error) {
       setError(error.message)
     } else {
@@ -50,7 +54,9 @@ export default function ProfilePage() {
     e.preventDefault()
     setSubmitting(true)
     setError(null)
-    const { error } = await supabase.auth.resetPasswordForEmail(email)
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin,
+    })
     if (error) {
       setError(error.message)
     } else {
