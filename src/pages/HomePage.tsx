@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FilterChips } from '../components/events/FilterChips'
 import { FeaturedCard } from '../components/events/FeaturedCard'
@@ -9,15 +9,7 @@ export default function HomePage() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [activeFilter, setActiveFilter] = useState('')
-  const [searchInput, setSearchInput] = useState('')
-  const [search, setSearch] = useState('')
-
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const t = setTimeout(() => setSearch(searchInput.trim()), 300)
-    return () => clearTimeout(t)
-  }, [searchInput])
 
   const filters = {
     category: ['outdoors', 'arts', 'performances', 'sports'].includes(activeFilter)
@@ -27,7 +19,6 @@ export default function HomePage() {
     weekendOnly: activeFilter === 'this-weekend' || undefined,
     ageMin: activeFilter === 'toddlers' ? 0 : activeFilter === 'ages-5-10' ? 5 : activeFilter === 'tweens' ? 11 : undefined,
     ageMax: activeFilter === 'toddlers' ? 3 : activeFilter === 'ages-5-10' ? 10 : activeFilter === 'tweens' ? 14 : undefined,
-    search: search || undefined,
   }
 
   const { data: featuredEvent, isLoading: featuredLoading } = useFeaturedEvent()
