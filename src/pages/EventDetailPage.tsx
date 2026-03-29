@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEvent } from '../hooks/useEvents'
+import { useEvent, useOrganizer } from '../hooks/useEvents'
 import { categoryStyles, formatEventDate, formatPrice, formatAgeRange } from '../lib/eventUtils'
 import { SaveButton } from '../components/ui/SaveButton'
 import { Tag } from '../components/ui/Tag'
@@ -8,6 +8,7 @@ export default function EventDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
   const { data: event, isLoading, isError } = useEvent(slug!)
+  const { data: organizer } = useOrganizer(event?.organizer_id ?? '')
 
   if (isLoading) {
     return (
@@ -82,9 +83,20 @@ export default function EventDetailPage() {
           <div className="font-fraunces text-3xl font-black" style={{ color: event.price_cents === 0 ? 'var(--color-sage)' : 'var(--color-ink)' }}>
             {event.price_cents === 0 ? 'Free' : formatPrice(event.price_cents)}
           </div>
-          <button className="bg-primary text-white px-6 py-[10px] rounded-btn text-sm font-semibold hover:bg-primary-dark transition-colors">
-            Get tickets
-          </button>
+          {organizer?.website ? (
+            <a
+              href={organizer.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-white px-6 py-[10px] rounded-btn text-sm font-semibold hover:bg-primary-dark transition-colors"
+            >
+              Go to site
+            </a>
+          ) : (
+            <button className="bg-primary text-white px-6 py-[10px] rounded-btn text-sm font-semibold hover:bg-primary-dark transition-colors" disabled>
+              Go to site
+            </button>
+          )}
         </div>
       </div>
 

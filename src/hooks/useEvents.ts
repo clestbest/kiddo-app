@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '../lib/supabase'
-import type { Event, EventCategory } from '../lib/types'
+import type { Event, EventCategory, Organizer } from '../lib/types'
 
 export type EventFilters = {
   category?: EventCategory
@@ -96,5 +96,21 @@ export function useEvent(slug: string) {
       return data as Event
     },
     enabled: !!slug,
+  })
+}
+
+export function useOrganizer(organizerId: string) {
+  return useQuery({
+    queryKey: ['organizers', organizerId],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('organizers')
+        .select('*')
+        .eq('id', organizerId)
+        .single()
+      if (error) throw error
+      return data as Organizer
+    },
+    enabled: !!organizerId,
   })
 }
