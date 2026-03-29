@@ -45,8 +45,8 @@ export default function HomePage() {
     <>
       <FilterChips active={activeFilter} onChange={setActiveFilter} />
 
-      {/* Hero */}
-      <div
+      {/* Hero — hidden */}
+      {/* <div
         className="px-6 py-14 text-center relative overflow-hidden"
         style={{ background: 'var(--color-primary-light)' }}
       >
@@ -65,7 +65,6 @@ export default function HomePage() {
           Family-vetted events, no Facebook required.
         </p>
 
-        {/* Search bar */}
         <div
           className="flex max-w-[520px] mx-auto bg-warm-white rounded-[14px] px-4 py-[6px] gap-2 items-center relative"
           style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }}
@@ -94,7 +93,7 @@ export default function HomePage() {
             Search
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Main content */}
       <div className="max-w-[1100px] mx-auto px-6 py-8">
