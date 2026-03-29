@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FilterChips } from '../components/events/FilterChips'
 import { FeaturedCard } from '../components/events/FeaturedCard'
@@ -9,15 +9,7 @@ export default function HomePage() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [activeFilter, setActiveFilter] = useState('')
-  const [searchInput, setSearchInput] = useState('')
-  const [search, setSearch] = useState('')
-
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const t = setTimeout(() => setSearch(searchInput.trim()), 300)
-    return () => clearTimeout(t)
-  }, [searchInput])
 
   const filters = {
     category: ['outdoors', 'arts', 'performances', 'sports'].includes(activeFilter)
@@ -27,7 +19,6 @@ export default function HomePage() {
     weekendOnly: activeFilter === 'this-weekend' || undefined,
     ageMin: activeFilter === 'toddlers' ? 0 : activeFilter === 'ages-5-10' ? 5 : activeFilter === 'tweens' ? 11 : undefined,
     ageMax: activeFilter === 'toddlers' ? 3 : activeFilter === 'ages-5-10' ? 10 : activeFilter === 'tweens' ? 14 : undefined,
-    search: search || undefined,
   }
 
   const { data: featuredEvent, isLoading: featuredLoading } = useFeaturedEvent()
@@ -45,8 +36,8 @@ export default function HomePage() {
     <>
       <FilterChips active={activeFilter} onChange={setActiveFilter} />
 
-      {/* Hero */}
-      <div
+      {/* Hero — hidden */}
+      {/* <div
         className="px-6 py-14 text-center relative overflow-hidden"
         style={{ background: 'var(--color-primary-light)' }}
       >
@@ -65,7 +56,6 @@ export default function HomePage() {
           Family-vetted events, no Facebook required.
         </p>
 
-        {/* Search bar */}
         <div
           className="flex max-w-[520px] mx-auto bg-warm-white rounded-[14px] px-4 py-[6px] gap-2 items-center relative"
           style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }}
@@ -94,7 +84,7 @@ export default function HomePage() {
             Search
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Main content */}
       <div className="max-w-[1100px] mx-auto px-6 py-8">
