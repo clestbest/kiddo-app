@@ -20,6 +20,7 @@ export const mockEvents: Event[] = [
     is_featured: true,
     is_approved: true,
     organizer_id: 'org-1',
+    source_url: null,
     created_at: '2026-03-01T00:00:00Z',
   },
   {
@@ -41,6 +42,7 @@ export const mockEvents: Event[] = [
     is_featured: false,
     is_approved: true,
     organizer_id: 'org-2',
+    source_url: null,
     created_at: '2026-03-02T00:00:00Z',
   },
   {
@@ -62,6 +64,7 @@ export const mockEvents: Event[] = [
     is_featured: false,
     is_approved: true,
     organizer_id: 'org-3',
+    source_url: null,
     created_at: '2026-03-03T00:00:00Z',
   },
   {
@@ -83,6 +86,7 @@ export const mockEvents: Event[] = [
     is_featured: false,
     is_approved: true,
     organizer_id: 'org-4',
+    source_url: null,
     created_at: '2026-03-04T00:00:00Z',
   },
   {
@@ -104,6 +108,7 @@ export const mockEvents: Event[] = [
     is_featured: false,
     is_approved: true,
     organizer_id: 'org-5',
+    source_url: null,
     created_at: '2026-03-05T00:00:00Z',
   },
   {
@@ -125,6 +130,7 @@ export const mockEvents: Event[] = [
     is_featured: false,
     is_approved: true,
     organizer_id: 'org-6',
+    source_url: null,
     created_at: '2026-03-06T00:00:00Z',
   },
   {
@@ -146,6 +152,7 @@ export const mockEvents: Event[] = [
     is_featured: false,
     is_approved: true,
     organizer_id: 'org-7',
+    source_url: null,
     created_at: '2026-03-07T00:00:00Z',
   },
 ]
