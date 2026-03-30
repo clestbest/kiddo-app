@@ -7,7 +7,7 @@ export function TopNav() {
 
   return (
     <nav className="bg-warm-white border-b-[1.5px] border-border px-6 h-[60px] flex items-center justify-between sticky top-0 z-[100]">
-      <div className="font-fraunces text-[22px] font-black text-ink tracking-[-0.5px] flex items-center gap-[6px]">
+      <div className="font-grand-hotel text-[28px] text-ink flex items-center gap-[6px]">
         kiddo
         <span className="w-2 h-2 bg-primary rounded-full inline-block" />
       </div>
