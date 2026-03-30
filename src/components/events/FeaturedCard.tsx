@@ -51,7 +51,7 @@ export function FeaturedCard({ event, onClick }: FeaturedCardProps) {
       <div className="flex flex-col items-end gap-3 relative z-10">
         <SaveButton eventId={event.id} variant="light" />
         <AgeBadge min={event.age_min} max={event.age_max} />
-        <span className="font-fraunces text-[28px] font-black text-primary">
+        <span className={`font-fraunces text-[28px] text-primary ${isFree ? 'font-normal' : 'font-black'}`}>
           {isFree ? 'Free' : formatPrice(event.price_cents)}
         </span>
       </div>
