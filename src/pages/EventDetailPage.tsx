@@ -95,7 +95,7 @@ export default function EventDetailPage() {
         </div>
 
         <div className="flex items-center justify-between pt-4 border-t border-border">
-          <div className="font-fraunces text-3xl font-black text-ink">
+          <div className={`font-fraunces text-3xl text-ink ${event.price_cents === 0 ? 'font-normal' : 'font-black'}`}>
             {event.price_cents === 0 ? "Free" : formatPrice(event.price_cents)}
           </div>
           {event.source_url && (
