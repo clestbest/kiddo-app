@@ -82,9 +82,16 @@ export default function EventDetailPage() {
           <div className="font-fraunces text-3xl font-black" style={{ color: event.price_cents === 0 ? 'var(--color-sage)' : 'var(--color-ink)' }}>
             {event.price_cents === 0 ? 'Free' : formatPrice(event.price_cents)}
           </div>
-          <button className="bg-primary text-white px-6 py-[10px] rounded-btn text-sm font-semibold hover:bg-primary-dark transition-colors">
-            Get tickets
-          </button>
+          {event.source_url && (
+            <a
+              href={event.source_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-white px-6 py-[10px] rounded-btn text-sm font-semibold hover:bg-primary-dark transition-colors"
+            >
+              Go to site
+            </a>
+          )}
         </div>
       </div>
 

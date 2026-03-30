@@ -27,6 +27,7 @@ export type Event = {
   is_approved: boolean
   organizer_id: string
   created_at: string
+  source_url: string | null
 }
 
 export type SavedEvent = {
