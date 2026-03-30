@@ -22,7 +22,7 @@ export default {
         border: 'var(--color-border)',
       },
       fontFamily: {
-        fraunces: ['Fraunces', 'serif'],
+        fraunces: ['Poppins', 'sans-serif'],
         sans: ['DM Sans', 'sans-serif'],
         'grand-hotel': ['Grand Hotel', 'cursive'],
       },
