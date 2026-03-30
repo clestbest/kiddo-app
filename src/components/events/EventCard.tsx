@@ -20,11 +20,21 @@ export function EventCard({ event, style, onClick }: EventCardProps) {
       style={style}
       className="bg-warm-white rounded-card border-[1.5px] border-border overflow-hidden cursor-pointer transition-all duration-200 hover:border-primary hover:shadow-card hover:-translate-y-0.5"
     >
-      {/* Color bar */}
-      <div
-        className="h-[6px] w-full"
-        style={{ background: cat.colorBar }}
-      />
+      {/* Image or color bar */}
+      {event.image_url ? (
+        <div className="h-40 overflow-hidden">
+          <img
+            src={event.image_url}
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className="h-[6px] w-full"
+          style={{ background: cat.colorBar }}
+        />
+      )}
 
       <div className="p-4">
         {/* Tags */}

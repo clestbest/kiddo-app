@@ -40,6 +40,7 @@ export default function EventDetailPage() {
   }
 
   const cat = categoryStyles[event.category];
+  const hasImage = !!event.image_url;
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-8">
@@ -50,12 +51,29 @@ export default function EventDetailPage() {
         ← Back
       </button>
 
-      <div
-        className="h-2 w-full rounded-t-card mb-0"
-        style={{ background: cat.colorBar }}
-      />
+      {/* Hero image or color bar */}
+      {hasImage ? (
+        <div className="h-56 rounded-t-card overflow-hidden">
+          <img
+            src={event.image_url!}
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className="h-2 w-full rounded-t-card"
+          style={{ background: cat.colorBar }}
+        />
+      )}
 
-      <div className="bg-warm-white rounded-b-card rounded-tr-card border-[1.5px] border-t-0 border-border p-6 mb-6">
+      <div
+        className={`bg-warm-white border-[1.5px] border-border p-6 mb-6 ${
+          hasImage
+            ? 'rounded-b-card border-t-0'
+            : 'rounded-b-card rounded-tr-card border-t-0'
+        }`}
+      >
         <div className="flex items-start justify-between gap-4 mb-4">
           <div>
             <div className="flex gap-2 mb-3">
