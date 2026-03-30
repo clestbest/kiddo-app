@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEvent, useOrganizer } from "../hooks/useEvents";
+import { useEvent } from "../hooks/useEvents";
 import {
   categoryStyles,
   formatEventDate,
@@ -13,7 +13,6 @@ export default function EventDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { data: event, isLoading, isError } = useEvent(slug!);
-  const { data: organizer } = useOrganizer(event?.organizer_id ?? "");
 
   if (isLoading) {
     return (
