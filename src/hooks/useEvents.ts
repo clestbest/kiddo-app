@@ -16,6 +16,7 @@ async function fetchEvents(filters: EventFilters): Promise<Event[]> {
     .from('events')
     .select('*')
     .eq('is_approved', true)
+    .gte('ends_at', new Date().toISOString())
     .order('starts_at', { ascending: true })
 
   if (filters.category) {
@@ -73,6 +74,7 @@ export function useFeaturedEvent() {
         .select('*')
         .eq('is_approved', true)
         .eq('is_featured', true)
+        .gte('ends_at', new Date().toISOString())
         .order('starts_at', { ascending: true })
         .limit(1)
         .single()
