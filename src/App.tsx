@@ -23,7 +23,11 @@ export default function App() {
               <Route path="/map" element={<MapPage />} />
               <Route path="/saved" element={<SavedPage />} />
               <Route path="/profile" element={<ProfilePage />} />
+<<<<<<< HEAD
               <Route path="/events/:id" element={<EventDetailPage />} />
+=======
+              <Route path="/events/:slug" element={<EventDetailPage />} />
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
               <Route path="/submit" element={<SubmitEventPage />} />
             </Routes>
           </main>

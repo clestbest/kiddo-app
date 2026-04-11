@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 import { FilterChips } from '../components/events/FilterChips'
 import { FeaturedCard } from '../components/events/FeaturedCard'
@@ -75,12 +76,82 @@ export default function HomePage() {
             <FeaturedCard event={featuredEvent} />
           </>
         )}
+=======
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FilterChips } from "../components/events/FilterChips";
+import { FeaturedCard } from "../components/events/FeaturedCard";
+import { EventGrid } from "../components/events/EventGrid";
+import { useFeaturedEvent, useEvents } from "../hooks/useEvents";
+
+export default function HomePage() {
+  const [activeFilter, setActiveFilter] = useState("");
+  const navigate = useNavigate();
+
+  const filters = {
+    category: ["outdoors", "arts", "performances", "sports"].includes(
+      activeFilter,
+    )
+      ? ((activeFilter === "performances"
+          ? "performance"
+          : activeFilter) as import("../lib/types").EventCategory)
+      : undefined,
+    free: activeFilter === "free" || undefined,
+    weekendOnly: activeFilter === "this-weekend" || undefined,
+    ageMin:
+      activeFilter === "toddlers"
+        ? 0
+        : activeFilter === "ages-5-10"
+          ? 5
+          : activeFilter === "tweens"
+            ? 11
+            : undefined,
+    ageMax:
+      activeFilter === "toddlers"
+        ? 3
+        : activeFilter === "ages-5-10"
+          ? 10
+          : activeFilter === "tweens"
+            ? 14
+            : undefined,
+  };
+
+  const { data: featuredEvent, isLoading: featuredLoading } =
+    useFeaturedEvent();
+  const { data: allEvents, isLoading: eventsLoading } = useEvents(filters);
+  const regularEvents = allEvents?.filter((e) => !e.is_featured) ?? [];
+
+  return (
+    <>
+      <FilterChips active={activeFilter} onChange={setActiveFilter} />
+
+      {/* Main content */}
+      <div className="max-w-[1100px] mx-auto px-6 py-8">
+        {/* Featured section */}
+        {featuredEvent ? (
+          <div className="flex items-baseline justify-between mb-5">
+            <h2 className="font-fraunces text-2xl font-bold text-ink tracking-[-0.5px]">
+              Featured this weekend
+            </h2>
+          </div>
+        ) : null}
+
+        {featuredLoading ? (
+          <div className="h-64 rounded-card bg-primary-light animate-pulse" />
+        ) : featuredEvent ? (
+          <FeaturedCard
+            event={featuredEvent}
+            onClick={() => navigate(`/events/${featuredEvent.slug}`)}
+          />
+        ) : null}
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
 
         {/* Events grid section */}
         <div className="flex items-baseline justify-between mb-5">
           <h2 className="font-fraunces text-2xl font-bold text-ink tracking-[-0.5px]">
             Happening near you
           </h2>
+<<<<<<< HEAD
           {regularEvents.length > 0 && (
             <a
               href="#"
@@ -107,6 +178,24 @@ export default function HomePage() {
 
         {/* Digest banner */}
         <div className="bg-primary rounded-card px-7 py-6 flex items-center justify-between gap-5 mb-10 flex-wrap">
+=======
+          <a
+            href="#"
+            className="text-[13px] text-primary font-semibold cursor-pointer hover:text-primary-dark transition-colors"
+          >
+            See all →
+          </a>
+        </div>
+
+        {eventsLoading ? (
+          <div className="h-48 rounded-card bg-primary-light animate-pulse" />
+        ) : (
+          <EventGrid events={regularEvents} />
+        )}
+
+        {/* Digest banner */}
+        {/* <div className="bg-primary rounded-card px-7 py-6 flex items-center justify-between gap-5 mb-10 flex-wrap">
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
           <div>
             <h3 className="font-fraunces text-xl font-bold text-white mb-1">
               📬 Get the Friday digest
@@ -120,7 +209,14 @@ export default function HomePage() {
               ✓ You're subscribed!
             </div>
           ) : (
+<<<<<<< HEAD
             <form onSubmit={handleSubscribe} className="flex gap-2 flex-shrink-0">
+=======
+            <form
+              onSubmit={handleSubscribe}
+              className="flex gap-2 flex-shrink-0"
+            >
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
               <input
                 type="email"
                 value={email}
@@ -136,7 +232,11 @@ export default function HomePage() {
               </button>
             </form>
           )}
+<<<<<<< HEAD
         </div>
+=======
+        </div> */}
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
 
         {/* Organizer CTA */}
         <div className="bg-cream border-2 border-dashed border-border rounded-card p-7 text-center mb-10">
@@ -144,9 +244,19 @@ export default function HomePage() {
             Running an event for families?
           </h3>
           <p className="text-[13px] text-muted mb-4">
+<<<<<<< HEAD
             List it free, or get featured at the top of the feed — seen by 2,000+ Treasure Valley parents.
           </p>
           <button className="bg-transparent text-primary border-2 border-primary px-5 py-[9px] rounded-btn text-[13px] font-bold font-sans cursor-pointer transition-all hover:bg-primary hover:text-white">
+=======
+            List it free, or get featured at the top of the feed — seen by
+            2,000+ Treasure Valley parents.
+          </p>
+          <button
+            onClick={() => navigate("/submit")}
+            className="bg-transparent text-primary border-2 border-primary px-5 py-[9px] rounded-btn text-[13px] font-bold font-sans cursor-pointer transition-all hover:bg-primary hover:text-white"
+          >
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
             Submit your event →
           </button>
         </div>
@@ -155,5 +265,9 @@ export default function HomePage() {
         <div className="h-20" />
       </div>
     </>
+<<<<<<< HEAD
   )
+=======
+  );
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
 }

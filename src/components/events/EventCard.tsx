@@ -3,6 +3,10 @@ import { categoryStyles, formatEventDate } from '../../lib/eventUtils'
 import { Tag } from '../ui/Tag'
 import { PriceTag } from '../ui/PriceTag'
 import { AgeBadge } from '../ui/AgeBadge'
+<<<<<<< HEAD
+=======
+import { SaveButton } from '../ui/SaveButton'
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
 
 interface EventCardProps {
   event: Event
@@ -19,11 +23,29 @@ export function EventCard({ event, style, onClick }: EventCardProps) {
       style={style}
       className="bg-warm-white rounded-card border-[1.5px] border-border overflow-hidden cursor-pointer transition-all duration-200 hover:border-primary hover:shadow-card hover:-translate-y-0.5"
     >
+<<<<<<< HEAD
       {/* Color bar */}
       <div
         className="h-[6px] w-full"
         style={{ background: cat.colorBar }}
       />
+=======
+      {/* Image or color bar */}
+      {event.image_url ? (
+        <div className="h-40 overflow-hidden">
+          <img
+            src={event.image_url}
+            alt={event.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className="h-[6px] w-full"
+          style={{ background: cat.colorBar }}
+        />
+      )}
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
 
       <div className="p-4">
         {/* Tags */}
@@ -59,7 +81,14 @@ export function EventCard({ event, style, onClick }: EventCardProps) {
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 border-t border-border">
           <PriceTag priceCents={event.price_cents} />
+<<<<<<< HEAD
           <AgeBadge min={event.age_min} max={event.age_max} />
+=======
+          <div className="flex items-center gap-2">
+            <AgeBadge min={event.age_min} max={event.age_max} />
+            <SaveButton eventId={event.id} variant="light" />
+          </div>
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
         </div>
       </div>
     </div>

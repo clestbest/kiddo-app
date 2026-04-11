@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 
+=======
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
 type Filter = {
   id: string
   label: string
@@ -19,6 +22,7 @@ const FILTERS: Filter[] = [
 ]
 
 interface FilterChipsProps {
+<<<<<<< HEAD
   onFilterChange?: (filterId: string) => void
 }
 
@@ -28,6 +32,15 @@ export function FilterChips({ onFilterChange }: FilterChipsProps) {
   function handleClick(id: string) {
     setActive(id)
     onFilterChange?.(id)
+=======
+  active: string
+  onChange: (filterId: string) => void
+}
+
+export function FilterChips({ active, onChange }: FilterChipsProps) {
+  function handleClick(id: string) {
+    onChange(id === active ? '' : id)
+>>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
   }
 
   return (
