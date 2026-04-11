@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cream: #F7F5FB;
+  --color-warm-white: #FDFCFF;
+  --color-ink: #120D1E;
+  --color-bark: #2E1F4A;
+  --color-primary: #6B5FA6;
+  --color-primary-light: #EEEAF8;
+  --color-primary-dark: #574D8A;
+  --color-accent: #8B7EC8;
+  --color-sage: #5C7A5E;
+  --color-sage-light: #EBF2EC;
+  --color-sky: #3B7DD8;
+  --color-sky-light: #EBF2FD;
+  --color-gold: #E8A020;
+  --color-gold-light: #FDF4E3;
+  --color-muted: #7C6F9A;
+  --color-border: #DDD6F3;
+  --color-shadow: rgba(18, 13, 30, 0.10);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbar for filter chips */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
