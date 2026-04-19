@@ -10,10 +10,7 @@ export type EventCategory =
 
 export type Event = {
   id: string
-<<<<<<< HEAD
-=======
   slug: string
->>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
   title: string
   description: string
   location_name: string
@@ -30,11 +27,8 @@ export type Event = {
   is_approved: boolean
   organizer_id: string
   created_at: string
-<<<<<<< HEAD
-=======
   source_url: string | null
   image_url: string | null
->>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
 }
 
 export type SavedEvent = {
