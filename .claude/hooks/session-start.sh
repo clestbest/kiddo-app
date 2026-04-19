@@ -22,8 +22,10 @@ fi
 
 # Fetch SUPABASE_ACCESS_TOKEN from Doppler and persist to session environment
 if [ -n "${DOPPLER_TOKEN:-}" ] && [ -n "${CLAUDE_ENV_FILE:-}" ]; then
-  SUPABASE_ACCESS_TOKEN=$(doppler secrets get SUPABASE_ACCESS_TOKEN --plain --token "$DOPPLER_TOKEN")
-  echo "SUPABASE_ACCESS_TOKEN=$SUPABASE_ACCESS_TOKEN" >> "$CLAUDE_ENV_FILE"
+  SUPABASE_ACCESS_TOKEN=$(doppler secrets get SUPABASE_ACCESS_TOKEN --plain --token "$DOPPLER_TOKEN" 2>/dev/null) || true
+  if [ -n "${SUPABASE_ACCESS_TOKEN:-}" ]; then
+    echo "export SUPABASE_ACCESS_TOKEN=$SUPABASE_ACCESS_TOKEN" >> "$CLAUDE_ENV_FILE"
+  fi
 fi
 
 # Install npm dependencies
