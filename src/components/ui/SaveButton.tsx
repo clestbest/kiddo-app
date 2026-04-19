@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import { useState } from 'react'
-
-interface SaveButtonProps {
-  variant?: 'dark' | 'light'
-  onToggle?: (saved: boolean) => void
-}
-
-export function SaveButton({ variant = 'dark', onToggle }: SaveButtonProps) {
-  const [saved, setSaved] = useState(false)
-
-  function handleClick(e: React.MouseEvent) {
-    e.stopPropagation()
-    const next = !saved
-    setSaved(next)
-    onToggle?.(next)
-=======
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { useIsEventSaved, useSaveEvent, useUnsaveEvent } from '../../hooks/useSavedEvents'
@@ -42,7 +25,6 @@ export function SaveButton({ eventId, variant = 'dark' }: SaveButtonProps) {
     } else {
       save({ userId: user.id, eventId })
     }
->>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
   }
 
   if (variant === 'dark') {
@@ -60,11 +42,7 @@ export function SaveButton({ eventId, variant = 'dark' }: SaveButtonProps) {
   return (
     <button
       onClick={handleClick}
-<<<<<<< HEAD
-      className="w-8 h-8 rounded-full bg-cream border border-border flex items-center justify-center text-sm transition-all hover:border-primary cursor-pointer"
-=======
       className="w-8 h-8 shrink-0 rounded-full bg-cream border border-border flex items-center justify-center text-sm transition-all hover:border-primary cursor-pointer"
->>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
       aria-label={saved ? 'Unsave event' : 'Save event'}
     >
       {saved ? '❤️' : '🤍'}

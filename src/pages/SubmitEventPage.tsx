@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-export default function SubmitEventPage() {
-  return (
-    <div className="max-w-2xl mx-auto px-6 py-8">
-      <h1 className="font-fraunces text-3xl font-bold text-ink mb-2">Submit your event</h1>
-      <p className="text-muted text-sm mb-8">
-        List your family-friendly event for free, or pay to get featured at the top of the feed.
-      </p>
-
-      <div className="bg-warm-white rounded-card border-[1.5px] border-border p-6 flex flex-col items-center gap-4 text-center">
-        <div className="text-5xl">🚧</div>
-        <h2 className="font-fraunces text-xl font-bold text-ink">Coming soon</h2>
-        <p className="text-muted text-sm max-w-sm">
-          The organizer submission form is being built. Check back soon to list your event!
-        </p>
-      </div>
-
-      <div className="h-20" />
-=======
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
@@ -403,7 +384,6 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
     <div className="flex flex-col gap-1">
       <label className="text-xs font-semibold text-bark uppercase tracking-wide">{label}</label>
       {children}
->>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
     </div>
   )
 }

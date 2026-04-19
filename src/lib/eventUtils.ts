@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-import type { Event, EventCategory } from './types'
-
-/**
- * Returns true if the event hasn't ended yet.
- * Used to filter out past events across the whole app.
- */
-export function isUpcoming(event: Event): boolean {
-  return new Date(event.ends_at) > new Date()
-}
-=======
 import type { EventCategory } from './types'
->>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
 
 export function formatPrice(priceCents: number): string {
   if (priceCents === 0) return 'Free'
