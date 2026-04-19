@@ -10,5 +10,11 @@
         ]
       }
     ]
+  },
+  "mcpServers": {
+    "supabase": {
+      "command": "sh",
+      "args": ["-c", "doppler run -- npx -y @supabase/mcp-server-supabase --access-token $SUPABASE_ACCESS_TOKEN --project-ref ivzjmyzogrxlztyhvihx"]
+    }
   }
 }
