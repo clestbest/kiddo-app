@@ -22,14 +22,9 @@ export default {
         border: 'var(--color-border)',
       },
       fontFamily: {
-<<<<<<< HEAD
-        fraunces: ['Fraunces', 'serif'],
-        sans: ['DM Sans', 'sans-serif'],
-=======
         fraunces: ['Poppins', 'sans-serif'],
         sans: ['DM Sans', 'sans-serif'],
         'grand-hotel': ['Grand Hotel', 'cursive'],
->>>>>>> d526871bb44b67ad4e3357a9444c2ded843b66b4
       },
       borderRadius: {
         card: '16px',
