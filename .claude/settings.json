@@ -13,8 +13,11 @@
   },
   "mcpServers": {
     "supabase": {
-      "command": "sh",
-      "args": ["-c", "npx -y @supabase/mcp-server-supabase@latest --access-token \"$SUPABASE_ACCESS_TOKEN\" --project-ref ivzjmyzogrxlztyhvihx"]
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp?project_ref=ivzjmyzogrxlztyhvihx",
+      "headers": {
+        "Authorization": "Bearer ${SUPABASE_ACCESS_TOKEN}"
+      }
     }
   }
 }
