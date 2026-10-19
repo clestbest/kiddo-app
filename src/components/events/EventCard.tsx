@@ -6,7 +6,19 @@ import { AgeBadge } from '../ui/AgeBadge'
 import { SaveButton } from '../ui/SaveButton'
 
 interface EventCardProps {
-  event: Event
+  event: Pick<
+    Event,
+    | 'id'
+    | 'title'
+    | 'category'
+    | 'image_url'
+    | 'starts_at'
+    | 'ends_at'
+    | 'location_name'
+    | 'price_cents'
+    | 'age_min'
+    | 'age_max'
+  >
   style?: React.CSSProperties
   onClick?: () => void
 }

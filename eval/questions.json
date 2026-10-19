@@ -1,7 +1,7 @@
 [
   {
     "question": "free things for a 4-year-old in Meridian this weekend",
-    "filters": { "free": true, "age": 4, "city": "Meridian", "startsAfter": "2026-10-24T00:00:00-06:00", "startsBefore": "2026-10-25T23:59:59-06:00" },
+    "filters": { "free": true, "age": 4, "city": "Meridian", "thisWeekend": true },
     "expected": ["5a000000-0000-0000-0000-000000000001"]
   },
   { "question": "messy art for toddlers", "expected": ["5a000000-0000-0000-0000-000000000002"] },

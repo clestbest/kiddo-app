@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AskBox } from "../components/events/AskBox";
 import { FilterChips } from "../components/events/FilterChips";
 import { FeaturedCard } from "../components/events/FeaturedCard";
 import { EventGrid } from "../components/events/EventGrid";
@@ -48,6 +49,8 @@ export default function HomePage() {
 
       {/* Main content */}
       <div className="max-w-[1100px] mx-auto px-6 py-8">
+        <AskBox />
+
         {/* Featured section */}
         {featuredEvent ? (
           <div className="flex items-baseline justify-between mb-5">

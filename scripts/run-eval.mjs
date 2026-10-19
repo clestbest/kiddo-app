@@ -14,12 +14,26 @@ if (!url || !key) {
 
 const questions = JSON.parse(await readFile(new URL('../eval/questions.json', import.meta.url), 'utf8'))
 
+// "thisWeekend": true becomes the coming Saturday and Sunday. The sample
+// events roll forward every week, so fixed dates would go stale.
+function expandFilters({ thisWeekend, ...filters } = {}) {
+  if (!thisWeekend) return filters
+  const now = new Date()
+  const sat = new Date(now)
+  sat.setUTCDate(now.getUTCDate() + ((6 - now.getUTCDay() + 7) % 7))
+  const sun = new Date(sat)
+  sun.setUTCDate(sat.getUTCDate() + 1)
+  const day = (d) => d.toISOString().slice(0, 10)
+  // -06:00 and -07:00 cover Boise's summer and winter time.
+  return { ...filters, startsAfter: `${day(sat)}T00:00:00-06:00`, startsBefore: `${day(sun)}T23:59:59-07:00` }
+}
+
 let right = 0
 for (const q of questions) {
   const res = await fetch(`${url}/functions/v1/search-events`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, apikey: key, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question: q.question, ...q.filters }),
+    body: JSON.stringify({ question: q.question, ...expandFilters(q.filters) }),
   })
   const body = await res.json()
   if (!res.ok) {
