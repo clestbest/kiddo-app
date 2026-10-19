@@ -1,0 +1,26 @@
+[
+  {
+    "question": "free things for a 4-year-old in Meridian this weekend",
+    "filters": { "free": true, "age": 4, "city": "Meridian", "thisWeekend": true },
+    "expected": ["5a000000-0000-0000-0000-000000000001"]
+  },
+  { "question": "messy art for toddlers", "expected": ["5a000000-0000-0000-0000-000000000002"] },
+  { "question": "robots", "expected": ["5a000000-0000-0000-0000-000000000003"] },
+  { "question": "halloween costume parade", "expected": ["5a000000-0000-0000-0000-000000000004"] },
+  { "question": "trick or treating that isn't too scary for little kids", "expected": ["5a000000-0000-0000-0000-000000000005"] },
+  { "question": "science experiments around halloween", "expected": ["5a000000-0000-0000-0000-000000000006"] },
+  { "question": "classes for babies", "expected": ["5a000000-0000-0000-0000-000000000007"] },
+  { "question": "soccer for my 6 year old", "filters": { "age": 6 }, "expected": ["5a000000-0000-0000-0000-000000000008"] },
+  { "question": "yoga for kids", "expected": ["5a000000-0000-0000-0000-000000000009"] },
+  { "question": "puppet show", "expected": ["5a000000-0000-0000-0000-000000000010"] },
+  { "question": "drawing class for teenagers", "expected": ["5a000000-0000-0000-0000-000000000011"] },
+  { "question": "ice skating", "expected": ["5a000000-0000-0000-0000-000000000012"] },
+  { "question": "cooking class for kids", "expected": ["5a000000-0000-0000-0000-000000000013"] },
+  { "question": "build a bird feeder", "expected": ["5a000000-0000-0000-0000-000000000014"] },
+  { "question": "movie for kids with autism", "expected": ["5a000000-0000-0000-0000-000000000015"] },
+  { "question": "dinosaurs", "expected": ["5a000000-0000-0000-0000-000000000016"] },
+  { "question": "game night for the whole family", "expected": ["5a000000-0000-0000-0000-000000000017"] },
+  { "question": "free art for a 3 year old", "filters": { "free": true, "age": 3 }, "expected": ["5a000000-0000-0000-0000-000000000002", "5a000000-0000-0000-0000-000000000018"] },
+  { "question": "running race for kids", "expected": ["5a000000-0000-0000-0000-000000000019"] },
+  { "question": "my kid needs practice reading out loud", "expected": ["5a000000-0000-0000-0000-000000000020"] }
+]

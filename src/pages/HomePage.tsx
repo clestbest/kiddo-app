@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AskBox } from "../components/events/AskBox";
 import { FilterChips } from "../components/events/FilterChips";
-import { FeaturedCard } from "../components/events/FeaturedCard";
 import { EventGrid } from "../components/events/EventGrid";
-import { useFeaturedEvent, useEvents } from "../hooks/useEvents";
+import { useEvents } from "../hooks/useEvents";
 
 export default function HomePage() {
   const [activeFilter, setActiveFilter] = useState("");
@@ -37,10 +37,7 @@ export default function HomePage() {
             : undefined,
   };
 
-  const { data: featuredEvent, isLoading: featuredLoading } =
-    useFeaturedEvent();
   const { data: allEvents, isLoading: eventsLoading } = useEvents(filters);
-  const regularEvents = allEvents?.filter((e) => !e.is_featured) ?? [];
 
   return (
     <>
@@ -48,23 +45,7 @@ export default function HomePage() {
 
       {/* Main content */}
       <div className="max-w-[1100px] mx-auto px-6 py-8">
-        {/* Featured section */}
-        {featuredEvent ? (
-          <div className="flex items-baseline justify-between mb-5">
-            <h2 className="font-fraunces text-2xl font-bold text-ink tracking-[-0.5px]">
-              Featured this weekend
-            </h2>
-          </div>
-        ) : null}
-
-        {featuredLoading ? (
-          <div className="h-64 rounded-card bg-primary-light animate-pulse" />
-        ) : featuredEvent ? (
-          <FeaturedCard
-            event={featuredEvent}
-            onClick={() => navigate(`/events/${featuredEvent.slug}`)}
-          />
-        ) : null}
+        <AskBox />
 
         {/* Events grid section */}
         <div className="flex items-baseline justify-between mb-5">
@@ -82,7 +63,7 @@ export default function HomePage() {
         {eventsLoading ? (
           <div className="h-48 rounded-card bg-primary-light animate-pulse" />
         ) : (
-          <EventGrid events={regularEvents} />
+          <EventGrid events={allEvents ?? []} />
         )}
 
         {/* Digest banner */}
