@@ -13,6 +13,12 @@ export function formatAgeRange(min: number | null, max: number | null): string {
   return `Ages ${min}–${max}`
 }
 
+// "200 Main St, Boise, ID 83702" -> "Boise". Returns null if there's no ", ID".
+export function cityFromAddress(address: string): string | null {
+  const match = address.match(/([^,]+),\s*ID\b/)
+  return match ? match[1].trim() : null
+}
+
 export function formatEventDate(startsAt: string, endsAt: string): string {
   const start = new Date(startsAt)
   const end = new Date(endsAt)

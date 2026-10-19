@@ -116,3 +116,111 @@ insert into events (
  'Bookmark Reading Room (sample)', '2000 Sample Rd, Boise, ID 83704', 43.6250, -116.2700,
  '2026-10-26T16:00:00-06:00', '2026-10-26T17:00:00-06:00', 0, 4, 9, 'learning', false, true, 'aaaaaaaa-0000-0000-0000-000000000002')
 on conflict (id) do nothing;
+
+-- More sample events (added later), so each weekend has more matches.
+insert into events (
+  id, slug, title, description, location_name, address,
+  lat, lng, starts_at, ends_at,
+  price_cents, age_min, age_max,
+  category, is_featured, is_approved, organizer_id
+) values
+('5a000000-0000-0000-0000-000000000021', 'sample-little-explorers-nature-walk', 'Sample: Little Explorers Nature Walk',
+ 'A slow, stroller-friendly walk along the river looking for ducks, leaves, and bugs, with a short story at the end. This is a sample event to show how search works.',
+ 'Riverside Overlook (sample)', '2100 Sample Trl, Boise, ID 83706', 43.6010, -116.1900,
+ '2026-10-25T10:00:00-06:00', '2026-10-25T11:00:00-06:00', 0, 3, 6, 'outdoors', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000022', 'sample-library-lego-build-morning', 'Sample: Library Lego Build Morning',
+ 'Tubs of bricks and a new build challenge each week, from bridges to rockets. Builds go on display for a week. This is a sample event to show how search works.',
+ 'Maplewood Branch Library (sample)', '2200 Sample Ave, Boise, ID 83704', 43.6300, -116.2600,
+ '2026-10-24T13:00:00-06:00', '2026-10-24T14:30:00-06:00', 0, 4, 10, 'stem', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000023', 'sample-family-music-and-movement', 'Sample: Family Music & Movement',
+ 'Sing, dance, and shake egg shakers with a live guitarist. Made for wiggly little ones and their grown-ups. This is a sample event to show how search works.',
+ 'Bluebird Community Center (sample)', '2300 Sample St, Boise, ID 83702', 43.6170, -116.2050,
+ '2026-10-25T09:30:00-06:00', '2026-10-25T10:15:00-06:00', 0, 1, 5, 'performance', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000024', 'sample-fire-station-open-house', 'Sample: Fire Station Open House',
+ 'Climb into a fire truck, meet the firefighters, try on real gear, and practice a stop-drop-and-roll. This is a sample event to show how search works.',
+ 'Station 9 (sample)', '2400 Sample Rd, Meridian, ID 83642', 43.6080, -116.3850,
+ '2026-10-24T10:00:00-06:00', '2026-10-24T13:00:00-06:00', 0, null, null, 'learning', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000025', 'sample-kids-bike-rodeo', 'Sample: Kids Bike Rodeo',
+ 'Practice bike skills and safety on a cone course. Bring your bike and helmet; free helmet fit checks for everyone. This is a sample event to show how search works.',
+ 'Lincoln School Lot (sample)', '2500 Sample Blvd, Nampa, ID 83651', 43.5420, -116.5600,
+ '2026-10-31T09:00:00-06:00', '2026-10-31T11:00:00-06:00', 0, 4, 12, 'sports', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000026', 'sample-pajama-storytime', 'Sample: Pajama Storytime',
+ 'Come in pajamas for bedtime stories, a calm song, and milk and cookies. Stuffed animals welcome. This is a sample event to show how search works.',
+ 'Eagle Nest Library (sample)', '2600 Sample Ct, Eagle, ID 83616', 43.6960, -116.3500,
+ '2026-10-30T18:30:00-06:00', '2026-10-30T19:15:00-06:00', 0, 2, 7, 'learning', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000027', 'sample-spooky-slime-lab', 'Sample: Spooky Slime Lab',
+ 'Mix glow-in-the-dark and color-changing slime and take a jar home. Aprons provided. This is a sample event to show how search works.',
+ 'Tinker Shop (sample)', '2700 Sample Way, Garden City, ID 83714', 43.6550, -116.2800,
+ '2026-11-01T13:00:00-07:00', '2026-11-01T14:00:00-07:00', 1000, 5, 10, 'stem', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000028', 'sample-toddler-tumble-time', 'Sample: Toddler Tumble Time',
+ 'Soft mats, tunnels, and balls in a gym made for toddlers to climb, roll, and burn off energy. This is a sample event to show how search works.',
+ 'Bounce Barn Gym (sample)', '2800 Sample Pl, Boise, ID 83709', 43.5880, -116.2700,
+ '2026-10-31T09:30:00-06:00', '2026-10-31T10:30:00-06:00', 500, 1, 4, 'sports', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000029', 'sample-harvest-festival-and-hayride', 'Sample: Harvest Festival & Hayride',
+ 'Hayrides, a corn maze for little legs, pumpkin bowling, and apple cider. Free entry for everyone. This is a sample event to show how search works.',
+ 'Golden Field Farm (sample)', '2900 Sample Ln, Kuna, ID 83634', 43.4916, -116.4202,
+ '2026-10-31T11:00:00-06:00', '2026-10-31T15:00:00-06:00', 0, null, null, 'outdoors', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000030', 'sample-kids-art-walk-downtown', 'Sample: Kids Art Walk Downtown',
+ 'Stroll downtown galleries with a kids'' scavenger hunt map, then paint a free mini canvas to take home. This is a sample event to show how search works.',
+ 'Gallery Row (sample)', '3000 Sample St, Boise, ID 83702', 43.6160, -116.2010,
+ '2026-11-07T11:00:00-07:00', '2026-11-07T13:00:00-07:00', 0, null, null, 'arts', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000031', 'sample-mini-chefs-cookie-decorating', 'Sample: Mini Chefs Cookie Decorating',
+ 'Kids frost and decorate a box of sugar cookies with sprinkles and candy eyes, then take them home. This is a sample event to show how search works.',
+ 'Sweet Spot Bakery (sample)', '3100 Sample Ave, Eagle, ID 83616', 43.6940, -116.3560,
+ '2026-11-08T14:00:00-07:00', '2026-11-08T15:00:00-07:00', 1200, 3, 10, 'food', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000032', 'sample-planetarium-night-for-families', 'Sample: Planetarium Night for Families',
+ 'Lie back under the dome for a kid-friendly tour of the night sky, planets, and constellations. This is a sample event to show how search works.',
+ 'Starfield Dome (sample)', '3200 Sample Dr, Boise, ID 83725', 43.6030, -116.2020,
+ '2026-11-06T19:00:00-07:00', '2026-11-06T20:00:00-07:00', 700, 5, 12, 'stem', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000033', 'sample-indoor-playground-free-morning', 'Sample: Indoor Playground Free Morning',
+ 'Bounce houses, a ball pit, and a little climbing wall, free all morning. Socks required. This is a sample event to show how search works.',
+ 'Jump Zone (sample)', '3300 Sample Blvd, Nampa, ID 83687', 43.5800, -116.5600,
+ '2026-11-08T10:00:00-07:00', '2026-11-08T13:00:00-07:00', 0, 1, 6, 'other', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000034', 'sample-teen-rock-climbing-intro', 'Sample: Teen Rock Climbing Intro',
+ 'Teens learn knots, belaying basics, and climbing moves on the indoor wall with trained staff. Gear included. This is a sample event to show how search works.',
+ 'Summit Wall Gym (sample)', '3400 Sample Rd, Garden City, ID 83714', 43.6580, -116.2770,
+ '2026-11-07T15:00:00-07:00', '2026-11-07T17:00:00-07:00', 2000, 12, 17, 'sports', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000035', 'sample-sing-along-musical-matinee', 'Sample: Sing-Along Musical Matinee',
+ 'A family musical on the big screen with lyrics on screen, so everyone can sing along. Costumes encouraged. This is a sample event to show how search works.',
+ 'Village Theater (sample)', '3500 Sample Pkwy, Meridian, ID 83646', 43.6200, -116.3900,
+ '2026-11-01T14:00:00-07:00', '2026-11-01T15:30:00-07:00', 800, null, null, 'performance', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000036', 'sample-farm-animal-petting-morning', 'Sample: Farm Animal Petting Morning',
+ 'Pet goats, bunnies, and chickens, feed the ducks, and take a short pony ride. This is a sample event to show how search works.',
+ 'Clover Creek Farm (sample)', '3600 Sample Ln, Kuna, ID 83634', 43.4950, -116.4150,
+ '2026-10-25T10:00:00-06:00', '2026-10-25T12:00:00-06:00', 400, 1, 8, 'outdoors', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000037', 'sample-kids-gardening-club', 'Sample: Kids Gardening Club',
+ 'Kids plant bulbs, tuck the garden in for winter, and look for worms. Gloves and tools provided. This is a sample event to show how search works.',
+ 'Sprout Community Garden (sample)', '3700 Sample St, Boise, ID 83705', 43.5970, -116.2200,
+ '2026-10-28T16:00:00-06:00', '2026-10-28T17:00:00-06:00', 0, 5, 11, 'outdoors', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000038', 'sample-spanish-storytime', 'Sample: Spanish Storytime',
+ 'Bilingual stories, songs, and rhymes in Spanish and English for little ones and their grown-ups. This is a sample event to show how search works.',
+ 'Meadow Branch Library (sample)', '3800 Sample Ave, Meridian, ID 83642', 43.6100, -116.3950,
+ '2026-10-29T10:30:00-06:00', '2026-10-29T11:15:00-06:00', 0, 1, 5, 'learning', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000039', 'sample-river-duck-count', 'Sample: River Duck Count',
+ 'Grab a clipboard and binoculars and help count ducks and geese along the water. Kids get a bird sticker sheet. This is a sample event to show how search works.',
+ 'Cottonwood Bend (sample)', '3900 Sample Trl, Boise, ID 83714', 43.6400, -116.2400,
+ '2026-11-07T09:00:00-07:00', '2026-11-07T10:30:00-07:00', 0, 4, 12, 'outdoors', false, true, 'aaaaaaaa-0000-0000-0000-000000000002'),
+
+('5a000000-0000-0000-0000-000000000040', 'sample-kids-karate-trial-class', 'Sample: Kids Karate Trial Class',
+ 'A free first karate class covering basic kicks, blocks, focus, and respect. Wear comfy clothes. This is a sample event to show how search works.',
+ 'Tiger Path Dojo (sample)', '4000 Sample Ct, Eagle, ID 83616', 43.6970, -116.3520,
+ '2026-11-03T17:00:00-07:00', '2026-11-03T17:45:00-07:00', 0, 5, 12, 'sports', false, true, 'aaaaaaaa-0000-0000-0000-000000000002')
+on conflict (id) do nothing;

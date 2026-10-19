@@ -1,5 +1,5 @@
 import type { Event } from '../../lib/types'
-import { categoryStyles, formatEventDate } from '../../lib/eventUtils'
+import { categoryStyles, cityFromAddress, formatEventDate } from '../../lib/eventUtils'
 import { Tag } from '../ui/Tag'
 import { PriceTag } from '../ui/PriceTag'
 import { AgeBadge } from '../ui/AgeBadge'
@@ -15,6 +15,7 @@ interface EventCardProps {
     | 'starts_at'
     | 'ends_at'
     | 'location_name'
+    | 'address'
     | 'price_cents'
     | 'age_min'
     | 'age_max'
@@ -25,6 +26,7 @@ interface EventCardProps {
 
 export function EventCard({ event, style, onClick }: EventCardProps) {
   const cat = categoryStyles[event.category]
+  const city = cityFromAddress(event.address)
 
   return (
     <div
@@ -75,7 +77,10 @@ export function EventCard({ event, style, onClick }: EventCardProps) {
           </div>
           <div className="flex items-center gap-[5px] text-[12px] text-muted">
             <span>📍</span>
-            <span>{event.location_name}</span>
+            <span>
+              {event.location_name}
+              {city && ` · ${city}`}
+            </span>
           </div>
         </div>
 

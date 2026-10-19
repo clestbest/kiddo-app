@@ -6,6 +6,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2'
 // Must match the model in _shared/search.ts.
 const MODEL = 'gte-small'
 const model = new Supabase.ai.Session(MODEL)
+const MAX_PER_RUN = 10
 
 type EventRow = {
   id: string
@@ -90,7 +91,7 @@ Deno.serve(async (req) => {
   if (existingError) return json({ error: existingError.message }, 500)
 
   const doneHashes = new Map(existing.map((row) => [row.event_id, row.content_hash]))
-  const results = { embedded: 0, unchanged: 0, errors: [] as string[] }
+  const results = { embedded: 0, unchanged: 0, remaining: 0, errors: [] as string[] }
 
   for (const event of events as EventRow[]) {
     // 2. Skip events whose text hasn't changed since last time.
@@ -98,6 +99,13 @@ Deno.serve(async (req) => {
     const hash = await sha256(`${MODEL}\n${text}`)
     if (doneHashes.get(event.id) === hash) {
       results.unchanged++
+      continue
+    }
+
+    // Each run has limited compute, so stop after MAX_PER_RUN and report how
+    // many are left. Run it again until "remaining" is 0.
+    if (results.embedded + results.errors.length >= MAX_PER_RUN) {
+      results.remaining++
       continue
     }
 
