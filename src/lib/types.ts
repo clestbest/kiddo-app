@@ -45,14 +45,3 @@ export type Organizer = {
   website: string | null
   is_verified: boolean
 }
-
-export type FilterOption =
-  | 'this-weekend'
-  | 'outdoors'
-  | 'arts'
-  | 'performances'
-  | 'sports'
-  | 'free'
-  | 'toddlers'
-  | 'ages-5-10'
-  | 'tweens'

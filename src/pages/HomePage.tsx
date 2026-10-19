@@ -1,48 +1,14 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AskBox } from "../components/events/AskBox";
-import { FilterChips } from "../components/events/FilterChips";
 import { EventGrid } from "../components/events/EventGrid";
 import { useEvents } from "../hooks/useEvents";
 
 export default function HomePage() {
-  const [activeFilter, setActiveFilter] = useState("");
   const navigate = useNavigate();
-
-  const filters = {
-    category: ["outdoors", "arts", "performances", "sports"].includes(
-      activeFilter,
-    )
-      ? ((activeFilter === "performances"
-          ? "performance"
-          : activeFilter) as import("../lib/types").EventCategory)
-      : undefined,
-    free: activeFilter === "free" || undefined,
-    weekendOnly: activeFilter === "this-weekend" || undefined,
-    ageMin:
-      activeFilter === "toddlers"
-        ? 0
-        : activeFilter === "ages-5-10"
-          ? 5
-          : activeFilter === "tweens"
-            ? 11
-            : undefined,
-    ageMax:
-      activeFilter === "toddlers"
-        ? 3
-        : activeFilter === "ages-5-10"
-          ? 10
-          : activeFilter === "tweens"
-            ? 14
-            : undefined,
-  };
-
-  const { data: allEvents, isLoading: eventsLoading } = useEvents(filters);
+  const { data: allEvents, isLoading: eventsLoading } = useEvents();
 
   return (
     <>
-      <FilterChips active={activeFilter} onChange={setActiveFilter} />
-
       {/* Main content */}
       <div className="max-w-[1100px] mx-auto px-6 py-8">
         <AskBox />
