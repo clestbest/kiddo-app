@@ -3,6 +3,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2'
 
 // Supabase's built-in text-to-numbers model. It runs inside this function,
 // so event text never leaves Supabase. It gives back 384 numbers per text.
+// Must match the model in _shared/search.ts.
 const MODEL = 'gte-small'
 const model = new Supabase.ai.Session(MODEL)
 
@@ -42,6 +43,18 @@ async function sha256(text: string): Promise<string> {
   return Array.from(new Uint8Array(bytes), (b) => b.toString(16).padStart(2, '0')).join('')
 }
 
+// Supabase's gateway has already checked the key is genuine (verify_jwt is on),
+// so we only check that it's the service role key, not the public anon key.
+function isServiceRole(req: Request): boolean {
+  const token = req.headers.get('Authorization')?.replace('Bearer ', '') ?? ''
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')))
+    return payload.role === 'service_role'
+  } catch {
+    return false
+  }
+}
+
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body, null, 2), {
     status,
@@ -51,19 +64,24 @@ function json(body: unknown, status = 200): Response {
 
 // Makes embeddings for events that don't have one yet, or whose text changed.
 // Safe to run again and again (for example after each scrape).
+// Optional body { "organizer_id": "..." } limits it to one organizer's events.
 Deno.serve(async (req) => {
   // Only someone holding the service role key can run this.
-  const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-  if (req.headers.get('Authorization') !== `Bearer ${serviceKey}`) {
-    return json({ error: 'Unauthorized' }, 401)
-  }
+  if (!isServiceRole(req)) return json({ error: 'Unauthorized' }, 401)
 
-  const supabase = createClient(Deno.env.get('SUPABASE_URL')!, serviceKey)
+  const body: { organizer_id?: string } = await req.json().catch(() => ({}))
+  const supabase = createClient(
+    Deno.env.get('SUPABASE_URL')!,
+    Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
+  )
 
-  // 1. Load every event, and the fingerprints of the ones already done.
-  const { data: events, error: eventsError } = await supabase
+  // 1. Load the events, and the fingerprints of the ones already done.
+  let eventsQuery = supabase
     .from('events')
     .select('id, title, description, location_name, address, category, age_min, age_max, price_cents')
+  if (body.organizer_id) eventsQuery = eventsQuery.eq('organizer_id', body.organizer_id)
+
+  const { data: events, error: eventsError } = await eventsQuery
   if (eventsError) return json({ error: eventsError.message }, 500)
 
   const { data: existing, error: existingError } = await supabase
