@@ -7,7 +7,7 @@ import { corsHeaders, json, searchEvents, type FoundEvent, type SearchRequest } 
 //   2. Augmented:  paste those events into a message for Claude.
 //   3. Generation: Claude writes a short answer using only those events.
 
-const MODEL = 'claude-opus-5-5'
+const MODEL = 'claude-haiku-5-5'
 const anthropic = new Anthropic({ apiKey: Deno.env.get('ANTHROPIC_API_KEY') })
 
 const SYSTEM_PROMPT = `You help parents find kids' events in the Boise, Idaho area.
@@ -30,14 +30,14 @@ function when(iso: string): string {
   })
 }
 
-function describeEvent(e: FoundEvent, n: number): string {
+function describeEvent(e: FoundEvent): string {
   let ages = 'All ages'
   if (e.age_min != null && e.age_max != null) ages = `Ages ${e.age_min} to ${e.age_max}`
   else if (e.age_min != null) ages = `Ages ${e.age_min} and up`
   else if (e.age_max != null) ages = `Ages ${e.age_max} and under`
 
   return [
-    `Event ${n}: ${e.title}`,
+    `Event: ${e.title}`,
     `When: ${when(e.starts_at)} to ${when(e.ends_at)}`,
     `Where: ${e.location_name}, ${e.address}`,
     `Price: ${e.price_cents === 0 ? 'Free' : `$${(e.price_cents / 100).toFixed(2)}`}`,
@@ -84,20 +84,17 @@ Deno.serve(async (req) => {
     `Today is ${today}.`,
     '',
     'Events:',
-    events.map((e, i) => describeEvent(e, i + 1)).join('\n\n'),
+    events.map(describeEvent).join('\n\n'),
     '',
     `Question: ${question}`,
   ].join('\n')
 
   // 3. Generation
   try {
-    const response = await anthropic.beta.messages.create({
+    const response = await anthropic.messages.create({
       model: MODEL,
       max_tokens: 16000,
       output_config: { effort: 'low' },
-      // If Claude's safety checks decline, the API retries on a fallback model.
-      betas: ['server-side-fallback-2026-07-01'],
-      fallbacks: 'default',
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: message }],
     })
