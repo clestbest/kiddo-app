@@ -23,8 +23,9 @@ export default function MapPage() {
   const navigate = useNavigate()
   const { data: events = [], isLoading } = useEvents()
 
+  // Screen height minus the top nav (64px) and the demo notice (44px, or 32px on wider screens)
   return (
-    <div className="flex flex-col h-[calc(100dvh-64px)]">
+    <div className="flex flex-col h-[calc(100dvh-108px)] sm:h-[calc(100dvh-96px)]">
       {isLoading && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60">
           <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />

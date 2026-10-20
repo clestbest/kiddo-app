@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { supabase } from '../lib/supabase'
 import { EventGrid } from '../components/events/EventGrid'
 import type { Event } from '../lib/types'
+import { onlyShownEvents } from '../lib/eventVisibility'
 
 export default function SavedPage() {
   const navigate = useNavigate()
@@ -17,11 +18,9 @@ export default function SavedPage() {
     queryKey: ['saved_event_details', eventIds],
     queryFn: async () => {
       if (eventIds.length === 0) return []
-      const { data, error } = await supabase
-        .from('events')
-        .select('*')
-        .in('id', eventIds)
-        .order('starts_at', { ascending: true })
+      const { data, error } = await onlyShownEvents(
+        supabase.from('events').select('*').in('id', eventIds),
+      ).order('starts_at', { ascending: true })
       if (error) throw error
       return data as Event[]
     },

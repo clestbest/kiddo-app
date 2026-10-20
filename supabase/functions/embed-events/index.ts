@@ -8,6 +8,12 @@ const MODEL = 'gte-small'
 const model = new Supabase.ai.Session(MODEL)
 const MAX_PER_RUN = 10
 
+// While permission to use real event listings is pending, only the made-up
+// sample events get embeddings, so Ask Kiddo can't show anything else.
+// Set the SHOW_REAL_EVENTS secret to "true" to allow other events.
+const SAMPLE_ORGANIZER_ID = 'aaaaaaaa-0000-0000-0000-000000000002'
+const SHOW_REAL_EVENTS = Deno.env.get('SHOW_REAL_EVENTS') === 'true'
+
 type EventRow = {
   id: string
   title: string
@@ -80,7 +86,8 @@ Deno.serve(async (req) => {
   let eventsQuery = supabase
     .from('events')
     .select('id, title, description, location_name, address, category, age_min, age_max, price_cents')
-  if (body.organizer_id) eventsQuery = eventsQuery.eq('organizer_id', body.organizer_id)
+  const organizerId = SHOW_REAL_EVENTS ? body.organizer_id : SAMPLE_ORGANIZER_ID
+  if (organizerId) eventsQuery = eventsQuery.eq('organizer_id', organizerId)
 
   const { data: events, error: eventsError } = await eventsQuery
   if (eventsError) return json({ error: eventsError.message }, 500)

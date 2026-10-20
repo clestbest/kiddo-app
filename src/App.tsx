@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { TopNav } from './components/layout/TopNav'
 import { BottomNav } from './components/layout/BottomNav'
+import { DemoNotice } from './components/layout/DemoNotice'
 import HomePage from './pages/HomePage'
 import MapPage from './pages/MapPage'
 import SavedPage from './pages/SavedPage'
@@ -17,6 +18,7 @@ export default function App() {
       <BrowserRouter>
         <div className="min-h-screen bg-cream">
           <TopNav />
+          <DemoNotice />
           <main>
             <Routes>
               <Route path="/" element={<HomePage />} />

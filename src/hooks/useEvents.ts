@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '../lib/supabase'
 import type { Event, EventCategory, Organizer } from '../lib/types'
+import { onlyShownEvents } from '../lib/eventVisibility'
 
 export type EventFilters = {
   category?: EventCategory
@@ -12,12 +13,13 @@ export type EventFilters = {
 }
 
 async function fetchEvents(filters: EventFilters): Promise<Event[]> {
-  let query = supabase
-    .from('events')
-    .select('*')
-    .eq('is_approved', true)
-    .gte('ends_at', new Date().toISOString())
-    .order('starts_at', { ascending: true })
+  let query = onlyShownEvents(
+    supabase
+      .from('events')
+      .select('*')
+      .eq('is_approved', true)
+      .gte('ends_at', new Date().toISOString()),
+  ).order('starts_at', { ascending: true })
 
   if (filters.category) {
     query = query.eq('category', filters.category)
@@ -69,12 +71,14 @@ export function useFeaturedEvent() {
   return useQuery({
     queryKey: ['events', 'featured'],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('events')
-        .select('*')
-        .eq('is_approved', true)
-        .eq('is_featured', true)
-        .gte('ends_at', new Date().toISOString())
+      const { data, error } = await onlyShownEvents(
+        supabase
+          .from('events')
+          .select('*')
+          .eq('is_approved', true)
+          .eq('is_featured', true)
+          .gte('ends_at', new Date().toISOString()),
+      )
         .order('starts_at', { ascending: true })
         .limit(1)
         .single()
@@ -88,12 +92,13 @@ export function useEvent(slug: string) {
   return useQuery({
     queryKey: ['events', slug],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('events')
-        .select('*')
-        .eq('slug', slug)
-        .eq('is_approved', true)
-        .single()
+      const { data, error } = await onlyShownEvents(
+        supabase
+          .from('events')
+          .select('*')
+          .eq('slug', slug)
+          .eq('is_approved', true),
+      ).single()
       if (error) throw error
       return data as Event
     },
