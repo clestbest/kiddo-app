@@ -106,6 +106,7 @@ export function AskBox() {
           {ask.isPending ? 'Thinking…' : 'Ask'}
         </button>
       </form>
+      <p className="text-[12px] text-muted mt-2">Answers are based on sample events.</p>
 
       {ask.isError && (
         <p className="text-[13px] text-muted mt-4">Sorry, something went wrong. Please try again.</p>
